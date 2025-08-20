@@ -1,5 +1,5 @@
 import os
-from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel, set_tracing_disabled, function_tool
+from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel, set_tracing_disabled, function_tool, ModelSettings
 from dotenv import load_dotenv, find_dotenv
 from tavily import TavilyClient
 
@@ -36,9 +36,10 @@ agent : Agent = Agent(
     name = "Search Agent",
     model= llm_model,
     tools=[search, extract_content],
-    instructions=""
+    instructions="you are deep search agent. Use the tools provided to answer the questions.Always use the search tools first to find relevent information, then use the extract tools to get the details content from the urls returned",
+    model_settings=ModelSettings(temperature=1.9,tool_choice="auto", max_tokens=1000)
 )
 # print("agent.tools",agent.tools)
-runner = Runner.run_sync(agent,"What is the latest LLM Model Released by China")
+runner = Runner.run_sync(agent,"Research on the impact of Agentic AI fro white Collar jobs")
 
 print(runner.final_output)
