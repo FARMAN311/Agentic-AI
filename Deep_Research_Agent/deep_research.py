@@ -87,6 +87,6 @@ orchestrator_agent : Agent = Agent(
                                   ]
 )
 
-res = Runner.run_sync(orchestrator_agent,"Do Deep search lead Generation system for a tax company in us?")
+res = Runner.run_sync(orchestrator_agent,"we have the software house do research on the best skill in ai Era which generate more revenue?")
 print(res.final_output)
 
